@@ -6,6 +6,9 @@ import org.json.JSONObject;
 import org.witness.informacam.InformaCam;
 import org.witness.informacam.models.Model;
 
+import android.content.SharedPreferences;
+import android.preference.PreferenceManager;
+
 @SuppressWarnings("serial")
 public class IUser extends Model implements Serializable {
 	public boolean hasBaseImage = false;
@@ -22,7 +25,6 @@ public class IUser extends Model implements Serializable {
 	public String pgpKeyFingerprint = null;
 	
 	public boolean isInOfflineMode = false;
-	public IPreferences preferences = null; 
 	
 	public IUser() {
 		super();
@@ -60,5 +62,15 @@ public class IUser extends Model implements Serializable {
 	
 	public boolean save() {
 		return InformaCam.getInstance().saveState(this);
+	}
+	
+	public Object getPreference(String pref, Object defaultObj) {
+		SharedPreferences sp = PreferenceManager.getDefaultSharedPreferences(InformaCam.getInstance());
+		
+		if(sp.contains(pref)) {
+			return sp.getAll().get(pref);
+		}
+		
+		return defaultObj;
 	}
 }
