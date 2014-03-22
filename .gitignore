@@ -7,6 +7,7 @@ local.properties
 build.xml
 # ndk-build products
 libs/armeabi/libJpegRedaction.so
+libs/armeabi/libiocipher.so
 .settings/*
 .settings
 external/android-ffmpeg-library/bin/*
