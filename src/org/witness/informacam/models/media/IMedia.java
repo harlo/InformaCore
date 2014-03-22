@@ -58,14 +58,11 @@ import android.util.Base64;
 import android.util.Log;
 
 public class IMedia extends Model implements MetadataEmbededListener {
-
 	public String rootFolder = null;
+	
 	public String _id = null;
-	public String _rev = null;
 	public String alias = null;
-	public String bitmapThumb = null;
-	public String bitmapList = null;
-	public String bitmapPreview = null;
+		
 	public long lastEdited = 0L;
 	public boolean isNew = false;
 	public List<String> associatedCaches = null;
@@ -79,8 +76,7 @@ public class IMedia extends Model implements MetadataEmbededListener {
 	public IData data = null;
 	public IIntent intent = null;
 	public IGenealogy genealogy = null;
-	public List<IMail> messages = null;
-
+	
 	public CharSequence detailsAsText = null;
 
 	protected Handler responseHandler;
@@ -88,8 +84,8 @@ public class IMedia extends Model implements MetadataEmbededListener {
 	
 	private Bitmap mThumbnail = null;
 	
-	public Bitmap getBitmap(String pathToFile) {
-		return IOUtility.getBitmapFromFile(pathToFile, Type.IOCIPHER);
+	public Bitmap getBitmap(IAsset bitmapAsset) {
+		return IOUtility.getBitmapFromFile(bitmapAsset.path, bitmapAsset.source);
 	}
 
 	public Bitmap testImage ()
@@ -99,8 +95,8 @@ public class IMedia extends Model implements MetadataEmbededListener {
 
 	public Bitmap getThumbnail ()
 	{
-		if (mThumbnail == null && bitmapThumb != null)
-			mThumbnail = getBitmap(bitmapThumb);
+		if (mThumbnail == null && dcimEntry.thumbnail != null)
+			mThumbnail = getBitmap(dcimEntry.thumbnail);
 		
 		return mThumbnail;
 	}
@@ -479,7 +475,7 @@ public class IMedia extends Model implements MetadataEmbededListener {
 		InformaCam informaCam = InformaCam.getInstance();
 
 		INotification notification = new INotification();
-		notification.icon = bitmapThumb;
+		notification.icon = dcimEntry.thumbnail;
 
 		// create data package
 		if(data == null) {
@@ -659,7 +655,7 @@ public class IMedia extends Model implements MetadataEmbededListener {
 		InformaCam informaCam = InformaCam.getInstance();
 
 		INotification notification = new INotification();
-		notification.icon = bitmapThumb;
+		notification.icon = dcimEntry.thumbnail;
 
 		// create data package
 		if(data == null) {
@@ -799,7 +795,7 @@ public class IMedia extends Model implements MetadataEmbededListener {
 		InformaCam informaCam = InformaCam.getInstance();
 
 		INotification notification = new INotification();
-		notification.icon = bitmapThumb;
+		notification.icon = dcimEntry.thumbnail;
 
 		// create data package
 		if(data == null) {

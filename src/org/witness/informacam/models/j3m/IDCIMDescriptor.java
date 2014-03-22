@@ -8,6 +8,7 @@ import java.util.List;
 import org.witness.informacam.InformaCam;
 import org.witness.informacam.intake.Intake;
 import org.witness.informacam.models.Model;
+import org.witness.informacam.models.media.IAsset;
 import org.witness.informacam.utils.Constants.Codes;
 import org.witness.informacam.utils.Constants.App.Storage;
 import org.witness.informacam.utils.Constants.Logger;
@@ -56,7 +57,7 @@ public class IDCIMDescriptor extends Model {
 		Cursor cursor = InformaCam.getInstance().getContentResolver().query(authority, null, null, null, sortBy);
 
 		if(cursor != null && cursor.moveToFirst()) {
-			entry.fileName = cursor.getString(cursor.getColumnIndexOrThrow(MediaColumns.DATA));
+			entry.fileAsset = new IAsset(cursor.getString(cursor.getColumnIndexOrThrow(MediaColumns.DATA)), Storage.Type.FILE_SYSTEM);
 
 			if(!isThumbnail) {
 				entry.timeCaptured = cursor.getLong(cursor.getColumnIndexOrThrow(MediaColumns.DATE_ADDED));

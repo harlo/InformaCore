@@ -130,7 +130,7 @@ public class VideoConstructor {
 	String newHash = null;
 	
 	
-	public String hashVideo(int fileType, String pathToMedia, String extension) {
+	public String hashVideo(String pathToMedia, int fileType, String extension) {
 		/**
 		 * Hashes the video frames 
 		 * using FFMpeg's RGB hashing function and

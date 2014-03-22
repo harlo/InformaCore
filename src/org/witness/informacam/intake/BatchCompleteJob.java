@@ -56,11 +56,9 @@ public class BatchCompleteJob extends BackgroundTask {
 	public void persist() {
 		Logger.d(LOG, "CLEANING UP AFTER DCIM OBSERVER");
 		for(IDCIMEntry entry : thumbnails) {
-			informaCam.ioService.delete(entry.fileName, Type.FILE_SYSTEM);
+			informaCam.ioService.delete(entry.fileAsset.path, entry.fileAsset.source);
 			informaCam.ioService.delete(entry.uri, Type.CONTENT_RESOLVER);
-		}
-		
-		informaCam.ioService.clear(Storage.REVIEW_DUMP, Type.IOCIPHER);
+		}		
 	}
 
 }
