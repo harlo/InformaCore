@@ -9,3 +9,5 @@ build.xml
 libs/armeabi/libJpegRedaction.so
 .settings/*
 .settings
+external/android-ffmpeg-library/bin/*
+external/android-ffmpeg-library/gen/*
